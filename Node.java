@@ -1,6 +1,10 @@
 class Node{
-    int id;
+    private int id;
     Node(int id){
         this.id=id;
+    }
+
+    public int getId(){
+        return id;
     }
 }
