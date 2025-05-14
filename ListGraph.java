@@ -69,7 +69,23 @@ public class ListGraph<T> implements Graph {
 
     @Override
     public void setConnectionWeight(int id1, int id2, int weight) {
-        //Implementera
+        
+        
+        if(!nodes.containsKey(id1)||!nodes.containsKey(id2)){
+            
+            throw new  NoSuchElementException("One or both nodes do not exist");
+        }
+
+        if (getEdgeBetween(id1, id2)==null){
+            throw new  NoSuchElementException("No edge exists between these nodes");
+        }
+        
+        if(weight<0){
+            throw new  IllegalArgumentException("Weight cannot be negative");
+        }
+
+        getEdgeBetween(id1, id2).setWeight(weight);
+        getEdgeBetween(id2, id1).setWeight(weight);
     }
 
     private Edge getEdgeBetween(int id1, int id2) {
