@@ -1,5 +1,6 @@
-public class Node{
+public class Node {
     private int id;
+
     Node(int id){
         this.id=id;
     }
@@ -8,7 +9,7 @@ public class Node{
         return id;
     }
 
-    //Jämförelsemetod, kollar ifall noder har samma ID
+    // Jämförelsemetod, kollar ifall noder har samma ID
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -17,7 +18,7 @@ public class Node{
         return this.id == other.id;
     }
 
-    //För att noderna ska fungera på rätt sätt i mängder och mappar
+    // För att noderna ska fungera på rätt sätt i mängder och mappar
     @Override
     public int hashCode() {
         return Integer.hashCode(id);
