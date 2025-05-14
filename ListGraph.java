@@ -88,6 +88,9 @@ public class ListGraph<T> implements Graph {
         getEdgeBetween(id2, id1).setWeight(weight);
     }
 
+    public java.util.List<N> getNodess();
+
+
     private Edge getEdgeBetween(int id1, int id2) {
         for (Edge edge : edges.get(id1)) {
             if (edge.getDestination() == id2) {
