@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class ListGraph<T> implements Graph {
+public class ListGraph<T> implements Graph<Node> {
     private HashMap<Integer, Node> nodes;
     private HashMap<Integer, List<Edge>> edges;
 
@@ -69,29 +69,36 @@ public class ListGraph<T> implements Graph {
 
     @Override
     public void setConnectionWeight(int id1, int id2, int weight) {
-        
-        
-        if(!nodes.containsKey(id1)||!nodes.containsKey(id2)){
-            
-            throw new  NoSuchElementException("One or both nodes do not exist");
+
+        if (!nodes.containsKey(id1) || !nodes.containsKey(id2)) {
+
+            throw new NoSuchElementException("One or both nodes do not exist");
         }
 
-        if (getEdgeBetween(id1, id2)==null){
-            throw new  NoSuchElementException("No edge exists between these nodes");
+        if (getEdgeBetween(id1, id2) == null) {
+            throw new NoSuchElementException("No edge exists between these nodes");
         }
-        
-        if(weight<0){
-            throw new  IllegalArgumentException("Weight cannot be negative");
+
+        if (weight < 0) {
+            throw new IllegalArgumentException("Weight cannot be negative");
         }
 
         getEdgeBetween(id1, id2).setWeight(weight);
         getEdgeBetween(id2, id1).setWeight(weight);
     }
 
-    public java.util.List<N> getNodess();
+    @Override
+    public List<Node> getNodes() {
+        return new ArrayList<>(nodes.values());
+    }
 
+    @Override
+    public List<Edge> getEdgesFrom(int id) {
+        return new ArrayList<>(edges.get(id));
+    }
 
-    private Edge getEdgeBetween(int id1, int id2) {
+    @Override
+    public Edge getEdgeBetween(int id1, int id2) {
         for (Edge edge : edges.get(id1)) {
             if (edge.getDestination() == id2) {
                 return edge;

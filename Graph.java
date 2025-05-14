@@ -1,6 +1,6 @@
-import java.util.*;
+import java.util.List;
 
-public interface Graph {
+public interface Graph<T> {
 
     void add(int id);
 
@@ -12,5 +12,9 @@ public interface Graph {
 
     void setConnectionWeight(int id1, int id2, int weight);
 
-    
+    List<Node> getNodes();
+
+    List<Edge> getEdgesFrom(int id);
+
+    Edge getEdgeBetween(int id1, int id2);
 }
