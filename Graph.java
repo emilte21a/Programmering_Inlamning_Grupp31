@@ -2,19 +2,24 @@ import java.util.List;
 
 public interface Graph<T> {
 
-    void add(int id);
+    void add(T node);  
 
-    void remove(int id);
+    void remove(T node);  
 
-    void connect(int id1, int id2, String name, int weight);
+    void connect(T node1, T node2, String name, int weight);  
 
-    void disconnect(int id1, int id2);
+    void disconnect(T node1, T node2);  
 
-    void setConnectionWeight(int id1, int id2, int weight);
+    void setConnectionWeight(T node1, T node2, int weight);  
 
-    List<Node> getNodes();
+    List<T> getNodes();  
 
-    List<Edge> getEdgesFrom(int id);
+    List<Edge<T>> getEdgesFrom(T node); 
 
-    Edge getEdgeBetween(int id1, int id2);
+    Edge<T> getEdgeBetween(T node1, T node2);  
+
+    boolean pathExists(T start, T end);  
+
+    List<Edge<T>> getPath(T start, T end);  
+
 }
