@@ -1,16 +1,23 @@
-public class Edge {
-    int weight, to, from;
-    String name;
+public class Edge<T> {
+    private final T destination; 
+    private final String name;
+    private int weight; 
 
-    Edge(int weight, int to, int from, String name) {
+    public Edge(T destination, String name, int weight) {
+        if (weight < 0) {
+            throw new IllegalArgumentException("Weight cannot be negative");
+        }
+        this.destination = destination;
         this.name = name;
         this.weight = weight;
-        this.to = to;
-        this.from = from;
     }
 
-    public int getDestination() {
-        return to;
+    public T getDestination() {
+        return destination;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getWeight() {
@@ -18,20 +25,14 @@ public class Edge {
     }
 
     public void setWeight(int weight) {
+        if (weight < 0) {
+            throw new IllegalArgumentException("Weight cannot be negative");
+        }
         this.weight = weight;
-    }
-
-    public String getName() {
-        return name;
     }
 
     @Override
     public String toString() {
-        return "Edge{" +
-                "weight=" + weight +
-                ", to=" + to +
-                ", from=" + from +
-                ", name='" + name + '\'' +
-                '}';
+        return String.format("Edge{name='%s', destination=%s, weight=%d}", name, destination.toString(), weight);
     }
 }
